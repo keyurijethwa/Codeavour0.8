@@ -308,9 +308,9 @@ def main():
     
     time.sleep(3)
     expansion.stoprobot()
-    time.sleep(0.4)
+    time.sleep(0.6)
     
-    expansion.runbothmotors('R',2,80)
+    expansion.runmotor('R',2,80)
     time.sleep(0.4)
     expansion.stoprobot()
 
@@ -357,25 +357,37 @@ def main():
 
             if current_ids:
               if 5 in current_ids:
-                waste_type = "Organic waste"
                 intellio.speakTTS("Organic waste")
-                expansion.runmotor(1,"FORWARD",80)
-                expansion.runmotor(2,"FORWARD",80)
+                expansion.runmotor("L",1,80)
+                expansion.runmotor("R",2,80)
                 time.sleep(1)
                 intellio.moveservointime("s1",120,1)
-                
-                
-                
+                expansion.runmotor("L",2,80)
+                expansion.runmotor("R",1,80)
+                time.sleep(0.6)
+                expansion.stoprobot()
+                time.sleep(0.3)
+                expansion.runmotor("R",1,80)
+                time.sleep(0.6)
+                expansion.stoprobot()
+                time.sleep(0.3)
+                expansion.runmotor("L",1,60)
+                expansion.runmotor("R",2,80)
+                time.sleep(1)
+                expansion.stoprobot()
                 
               else:
-                waste_type = "Inorganic waste"
                 intellio.speakTTS("InOrganic waste")
-                expansion.runmotor(2,"FORWARD",80)
+                expansion.runmotor("R",2,80)
                 time.sleep(1)
-                expansion.runmotor(1,"FORWARD",80)
-                expansion.runmotor(2,"FORWARD",80)
+                expansion.runmotor("L",1,80)
+                expansion.runmotor("R",2,80)
+                
+                time.sleep(1)
+                expansion.stoprobot()
             else:
             # Reset when no tag is visible
+              intellio.speakTTS("No Tags")
               last_announced_type = None
 
 # ============== PRINT DETECTION CHANGES ==============
