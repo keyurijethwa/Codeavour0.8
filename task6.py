@@ -385,11 +385,22 @@ def main():
               if all(tag_id in current_ids for tag_id in [1,3]):
                 intellio.speakTTS("Residential Zone")
                 expansion.runmotor("R",2,80)
-                time.sleep(0.8)
+                time.sleep(1)
                 expansion.stoprobot()
             
               elif all(tag_id in current_ids for tag_id in [2,3,4]):
                 intellio.speakTTS("Business Zone")  
+                expansion.runmotor("L",2,80)
+                time.sleep(0.8)
+                expansion.stoprobot()
+                time.sleep(0.3)
+                expansion.runmotor("L",1,80)
+                expansion.runmotor("R",2,80)
+                time.sleep(0.3)
+                expansion.stoprobot()
+                expansion.runmotor("L",2,80)
+                time.sleep(0.5)
+                expansion.stoprobot()
 
               elif all(tag_id in current_ids for tag_id in [1,2,4]):
                 intellio.speakTTS("Business Zone")
