@@ -295,24 +295,50 @@ def draw_results(original_frame, ids, corners, rejected_count):
     return output
 
 
+#==============april tag=========#
+def organic():
+  intellio.speakTTS("Organic waste")
+  expansion.runmotor("L",1,75)
+  expansion.runmotor("R",2,80)
+  time.sleep(0.75)
+  expansion.stoprobot()
+  intellio.moveservointime("s1",115,1)
+  expansion.runmotor("L",2,80)
+  expansion.runmotor("R",1,80)
+  time.sleep(0.75)
+  expansion.stoprobot()
+  time.sleep(0.3)
+  expansion.runmotor("R",1,80)
+  time.sleep(0.7)
+  expansion.stoprobot()
+  time.sleep(0.3)
+  intellio.moveservointime("s1",145,1)
+  expansion.runmotor("L",2,60)
+  expansion.runmotor("R",1,80)
+  time.sleep(0.5)
+  expansion.stoprobot()
+  camera.close()
+  cv2.destroyAllWindows()
+                
 # ============== MAIN PROGRAM ==============
 def main():
     camera = None
     intellio = QuarkyIntellio()
     intellio.setspeakervolume(90)
-    
+    intellio.moveservointime("S1",145,1)
     expansion=QuarkyMiniExpansion()
     expansion.miniinitialise()
     expansion.runmotor('L',1,80)
     expansion.runmotor('R',2,80)
     
-    time.sleep(3)
-    expansion.stoprobot()
-    time.sleep(0.6)
-    
-    expansion.runmotor('R',2,80)
     time.sleep(0.4)
     expansion.stoprobot()
+    time.sleep(0.45)
+    
+    expansion.runmotor('L',1,80)
+    time.sleep(0.65)
+    expansion.stoprobot()
+    time.sleep(0.5)
 
     try:
         detector = AprilTagDetector()
@@ -358,33 +384,48 @@ def main():
             if current_ids:
               if 5 in current_ids:
                 intellio.speakTTS("Organic waste")
-                expansion.runmotor("L",1,80)
+                expansion.runmotor("L",1,75)
                 expansion.runmotor("R",2,80)
-                time.sleep(1)
-                intellio.moveservointime("s1",120,1)
+                time.sleep(0.70)
+                expansion.stoprobot()
+                intellio.moveservointime("s1",115,1)
                 expansion.runmotor("L",2,80)
                 expansion.runmotor("R",1,80)
-                time.sleep(0.6)
+                time.sleep(0.75)
                 expansion.stoprobot()
                 time.sleep(0.3)
                 expansion.runmotor("R",1,80)
                 time.sleep(0.6)
                 expansion.stoprobot()
                 time.sleep(0.3)
-                expansion.runmotor("L",1,60)
-                expansion.runmotor("R",2,80)
-                time.sleep(1)
+                intellio.moveservointime("s1",145,1)
+                expansion.runmotor("L",2,60)
+                expansion.runmotor("R",1,80)
+                time.sleep(0.5)
                 expansion.stoprobot()
+                camera.close()
+                cv2.destroyAllWindows()
                 
               else:
                 intellio.speakTTS("InOrganic waste")
+                expansion.runmotor("L",2,80)
+                expansion.runmotor("R",1,80)
+                time.sleep(0.7)
+                expansion.stoprobot()
+                time.sleep(0.3)
                 expansion.runmotor("R",2,80)
+                time.sleep(0.3)
+                expansion.stopmotor()
                 time.sleep(1)
+                expansion.runmotor("R",2,80)
+                time.sleep(0.3)
+                expansion.stopmotor()
                 expansion.runmotor("L",1,80)
                 expansion.runmotor("R",2,80)
-                
-                time.sleep(1)
+                time.sleep(0.6)
                 expansion.stoprobot()
+                intellio.moveservointime("s1",110,1)
+                
             else:
             # Reset when no tag is visible
               intellio.speakTTS("No Tags")
