@@ -295,50 +295,16 @@ def draw_results(original_frame, ids, corners, rejected_count):
     return output
 
 
-#==============april tag=========#
-def organic():
-  intellio.speakTTS("Organic waste")
-  expansion.runmotor("L",1,75)
-  expansion.runmotor("R",2,80)
-  time.sleep(0.75)
-  expansion.stoprobot()
-  intellio.moveservointime("s1",115,1)
-  expansion.runmotor("L",2,80)
-  expansion.runmotor("R",1,80)
-  time.sleep(0.75)
-  expansion.stoprobot()
-  time.sleep(0.3)
-  expansion.runmotor("R",1,80)
-  time.sleep(0.7)
-  expansion.stoprobot()
-  time.sleep(0.3)
-  intellio.moveservointime("s1",145,1)
-  expansion.runmotor("L",2,60)
-  expansion.runmotor("R",1,80)
-  time.sleep(0.5)
-  expansion.stoprobot()
-  camera.close()
-  cv2.destroyAllWindows()
                 
 # ============== MAIN PROGRAM ==============
 def main():
     camera = None
     intellio = QuarkyIntellio()
     intellio.setspeakervolume(90)
-    intellio.moveservointime("S1",145,1)
+ 
     expansion=QuarkyMiniExpansion()
     expansion.miniinitialise()
-    expansion.runmotor('L',1,80)
-    expansion.runmotor('R',2,80)
-    
-    time.sleep(0.4)
-    expansion.stoprobot()
-    time.sleep(0.5)
-    
-    expansion.runmotor('L',1,80)
-    time.sleep(0.72)
-    expansion.stoprobot()
-    time.sleep(0.5)
+   
 
     try:
         detector = AprilTagDetector()
@@ -382,13 +348,13 @@ def main():
 # ============== WASTE TYPE VOICE ANNOUNCEMENT ==============
 
             if current_ids:
-              if all(tag_id in current_ids for tag_id in [1,3]):
+              if current_ids=={1,3}:
                 intellio.speakTTS("Residential Zone")
                 expansion.runmotor("R",2,80)
-                time.sleep(1)
+                time.sleep(2)
                 expansion.stoprobot()
             
-              elif all(tag_id in current_ids for tag_id in [2,3,4]):
+              elif current_ids=={2,3,4}:
                 intellio.speakTTS("Business Zone")  
                 expansion.runmotor("L",2,80)
                 time.sleep(0.8)
@@ -402,16 +368,16 @@ def main():
                 time.sleep(0.5)
                 expansion.stoprobot()
 
-              elif all(tag_id in current_ids for tag_id in [1,2,4]):
+              elif current_ids=={1,2,4}:
                 intellio.speakTTS("Business Zone")
                   
-              elif all(tag_id in current_ids for tag_id in [1,2,3]):
+              elif current_ids=={1,2,3}:
                 intellio.speakTTS("Residential Zone")
                   
-              elif all(tag_id in current_ids for tag_id in [1,3,4]):
+              elif current_ids=={1,2,4}:
                 intellio.speakTTS("Residential Zone")
                   
-              elif all(tag_id in current_ids for tag_id in [2,4]):
+              elif current_ids=={2,4}:
                 intellio.speakTTS("Business Zone")
                   
               
