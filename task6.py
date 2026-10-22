@@ -357,28 +357,66 @@ def main():
               elif current_ids=={2,3,4}:
                 intellio.speakTTS("Business Zone")  
                 expansion.runmotor("L",2,80)
-                time.sleep(0.8)
+                time.sleep(0.5)
                 expansion.stoprobot()
                 time.sleep(0.3)
                 expansion.runmotor("L",1,80)
                 expansion.runmotor("R",2,80)
-                time.sleep(0.3)
+                time.sleep(0.4)
                 expansion.stoprobot()
+                time.sleep(0.2)
+                expansion.runmotor("L",1,80)
+                time.sleep(1.5)
+                expansion.stoprobot()
+                camera.close()
+                cv2.destroyAllWindows()
+                
+
+              elif current_ids=={1,2,4}:
+                intellio.speakTTS("Business Zone")  
                 expansion.runmotor("L",2,80)
                 time.sleep(0.5)
                 expansion.stoprobot()
-
-              elif current_ids=={1,2,4}:
-                intellio.speakTTS("Business Zone")
+                time.sleep(0.3)
+                expansion.runmotor("L",1,80)
+                expansion.runmotor("R",2,80)
+                time.sleep(0.4)
+                expansion.stoprobot()
+                time.sleep(0.2)
+                expansion.runmotor("L",1,80)
+                time.sleep(1.5)
+                expansion.stoprobot()
+                camera.close()
+                cv2.destroyAllWindows()
                   
               elif current_ids=={1,2,3}:
                 intellio.speakTTS("Residential Zone")
+                expansion.runmotor("R",2,80)
+                time.sleep(2)
+                expansion.stoprobot()
                   
-              elif current_ids=={1,2,4}:
+              elif current_ids=={1,3,4}:
                 intellio.speakTTS("Residential Zone")
+                expansion.runmotor("R",2,80)
+                time.sleep(2)
+                expansion.stoprobot()
                   
               elif current_ids=={2,4}:
-                intellio.speakTTS("Business Zone")
+                intellio.speakTTS("Business Zone")  
+                expansion.runmotor("L",2,80)
+                time.sleep(0.5)
+                expansion.stoprobot()
+                time.sleep(0.3)
+                expansion.runmotor("L",1,80)
+                expansion.runmotor("R",2,80)
+                time.sleep(0.4)
+                expansion.stoprobot()
+                time.sleep(0.2)
+                expansion.runmotor("L",1,80)
+                time.sleep(1.5)
+                expansion.stoprobot()
+                camera.close()
+                cv2.destroyAllWindows()
                   
               
             else:
