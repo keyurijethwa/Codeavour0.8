@@ -1,12 +1,9 @@
-sprite = Sprite('Stage')
-
 import cv2
 import numpy as np
 import socket
 import threading
 import time
-import pyttsx3
-import queue
+import config
 
 # ============== CONFIGURATION ==============
 HOST = "127.0.0.1"
@@ -350,22 +347,28 @@ def main():
             if current_ids:
               if current_ids=={1,3}:
                 intellio.speakTTS("Residential Zone")
-                expansion.runmotor("R",2,80)
+                expansion.runmotor(config.RIGHT_MOTOR,config.RIGHT_MOTOR_FORWARD_DIRECTION,80)
                 time.sleep(2)
                 expansion.stoprobot()
             
               elif current_ids=={2,3,4}:
                 intellio.speakTTS("Business Zone")  
-                expansion.runmotor("L",2,80)
+
+                expansion.runmotor(config.LEFT_MOTOR,config.LEFT_MOTOR_BACKWARD_DIRECTION,80)
+
                 time.sleep(0.5)
                 expansion.stoprobot()
                 time.sleep(0.3)
-                expansion.runmotor("L",1,80)
-                expansion.runmotor("R",2,80)
+
+                expansion.runmotor(config.LEFT_MOTOR,config.LEFT_MOTOR_FORWARD_DIRECTION,80)
+                expansion.runmotor(config.RIGHT_MOTOR,config.RIGHT_MOTOR_FORWARD_DIRECTION,80)
+
                 time.sleep(0.4)
                 expansion.stoprobot()
                 time.sleep(0.2)
-                expansion.runmotor("L",1,80)
+
+                expansion.runmotor(config.LEFT_MOTOR,config.LEFT_MOTOR_FORWARD_DIRECTION,80)
+
                 time.sleep(1.5)
                 expansion.stoprobot()
                 camera.close()
@@ -373,17 +376,23 @@ def main():
                 
 
               elif current_ids=={1,2,4}:
-                intellio.speakTTS("Business Zone")  
-                expansion.runmotor("L",2,80)
+                intellio.speakTTS("Business Zone")
+
+                expansion.runmotor(config.LEFT_MOTOR,config.LEFT_MOTOR_BACKWARD_DIRECTION,80)
+                
                 time.sleep(0.5)
                 expansion.stoprobot()
                 time.sleep(0.3)
-                expansion.runmotor("L",1,80)
-                expansion.runmotor("R",2,80)
+                
+                expansion.runmotor(config.LEFT_MOTOR,config.LEFT_MOTOR_FORWARD_DIRECTION,80)
+                expansion.runmotor(config.RIGHT_MOTOR,config.RIGHT_MOTOR_FORWARD_DIRECTION,80)
+                
                 time.sleep(0.4)
                 expansion.stoprobot()
                 time.sleep(0.2)
-                expansion.runmotor("L",1,80)
+                
+                expansion.runmotor(config.LEFT_MOTOR,config.LEFT_MOTOR_FORWARD_DIRECTION,80)
+                
                 time.sleep(1.5)
                 expansion.stoprobot()
                 camera.close()
@@ -391,28 +400,38 @@ def main():
                   
               elif current_ids=={1,2,3}:
                 intellio.speakTTS("Residential Zone")
-                expansion.runmotor("R",2,80)
+
+                expansion.runmotor(config.RIGHT_MOTOR,config.RIGHT_MOTOR_FORWARD_DIRECTION,80)
+
                 time.sleep(2)
                 expansion.stoprobot()
                   
               elif current_ids=={1,3,4}:
                 intellio.speakTTS("Residential Zone")
-                expansion.runmotor("R",2,80)
+
+                expansion.runmotor(config.RIGHT_MOTOR,config.RIGHT_MOTOR_FORWARD_DIRECTION,80)
+
                 time.sleep(2)
                 expansion.stoprobot()
                   
               elif current_ids=={2,4}:
                 intellio.speakTTS("Business Zone")  
-                expansion.runmotor("L",2,80)
+
+                expansion.runmotor(config.LEFT_MOTOR,config.LEFT_MOTOR_BACKWARD_DIRECTION,80)
+                
                 time.sleep(0.5)
                 expansion.stoprobot()
                 time.sleep(0.3)
-                expansion.runmotor("L",1,80)
-                expansion.runmotor("R",2,80)
+                
+                expansion.runmotor(config.LEFT_MOTOR,config.LEFT_MOTOR_FORWARD_DIRECTION,80)
+                expansion.runmotor(config.RIGHT_MOTOR,config.RIGHT_MOTOR_FORWARD_DIRECTION,80)
+                
                 time.sleep(0.4)
                 expansion.stoprobot()
                 time.sleep(0.2)
-                expansion.runmotor("L",1,80)
+                
+                expansion.runmotor(config.LEFT_MOTOR,config.LEFT_MOTOR_FORWARD_DIRECTION,80)
+                
                 time.sleep(1.5)
                 expansion.stoprobot()
                 camera.close()
