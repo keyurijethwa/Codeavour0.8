@@ -13,6 +13,10 @@ MAX_IMAGE_SIZE = 2_000_000
 TRANSFER_TIMEOUT = 1.0
 STALE_SECONDS = 2.0
 
+intellio = QuarkyIntellio()
+expansion=QuarkyMiniExpansion()
+expansion.miniinitialise()
+
 
 # ============== INTELLIO CAMERA RECEIVER ==============
 class IntellioCamera:
@@ -294,13 +298,11 @@ def draw_results(original_frame, ids, corners, rejected_count):
 # ============== MAIN PROGRAM ==============
 def main():
     camera = None
-    intellio = QuarkyIntellio()
+    
     intellio.setspeakervolume(config.SPEAKER_VOLUME)
 
     intellio.moveservointime("S1",145,1)
-    expansion=QuarkyMiniExpansion()
-    expansion.miniinitialise()
-
+    
     expansion.runmotor(config.LEFT_MOTOR,config.LEFT_MOTOR_FORWARD_DIRECTION,80)
     expansion.runmotor(config.RIGHT_MOTOR,config.RIGHT_MOTOR_FORWARD_DIRECTION,80)
     
@@ -484,4 +486,21 @@ def main():
         cv2.destroyAllWindows()
         print("Scanner stopped.")
 
-main()
+# Speak when the program initializes
+intellio.speakTTS("Code Initialize")
+
+# Keep checking the L button
+while True:
+    if intellio.readpushbutton(1):
+        intellio.speakTTS("Robot start")
+        time.sleep(2)
+        intellio.speakTTS("Challenge One start")
+        time.sleep(2)
+        main()
+        intellio.speakTTS("Challenge One Completed")
+
+        # Wait until L is released
+        while intellio.readpushbutton(1):
+            time.sleep(0.1)
+
+    time.sleep(0.1)

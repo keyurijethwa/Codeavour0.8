@@ -14,6 +14,10 @@ TRANSFER_TIMEOUT = 1.0
 STALE_SECONDS = 2.0
 
 
+intellio = QuarkyIntellio()
+expansion=QuarkyMiniExpansion()
+expansion.miniinitialise()
+
 # ============== INTELLIO CAMERA RECEIVER ==============
 class IntellioCamera:
 
@@ -296,12 +300,9 @@ def draw_results(original_frame, ids, corners, rejected_count):
 # ============== MAIN PROGRAM ==============
 def main():
     camera = None
-    intellio = QuarkyIntellio()
-    intellio.setspeakervolume(90)
+    
+    intellio.setspeakervolume(config.SPEAKER_VOLUME)
  
-    expansion=QuarkyMiniExpansion()
-    expansion.miniinitialise()
-   
 
     try:
         detector = AprilTagDetector()
@@ -506,4 +507,22 @@ def main():
         cv2.destroyAllWindows()
         print("Scanner stopped.")
 
-main()
+# Speak when the program initializes
+intellio.speakTTS("Code Initialize")
+
+# Keep checking the L button
+while True:
+    if intellio.readpushbutton(1):
+        intellio.speakTTS("Robot start")
+        time.sleep(2)
+        intellio.speakTTS("Challenge Six start")
+        time.sleep(2)
+        
+        main()
+        intellio.speakTTS("Challenge Six Completed")
+
+        # Wait until L is released
+        while intellio.readpushbutton(1):
+            time.sleep(0.1)
+
+    time.sleep(0.1)
